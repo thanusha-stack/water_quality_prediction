@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+
+</head>
+<style>
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(1.5);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: -1;
+  }
+
+  /* Reduce size for specific elements only */
+</style>
+
+<body style="color:white;">
+  <div class="video-container">
+    <video autoplay muted loop>
+      <source src="video1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <!-- Overlay -->
+  <div class="overlay"></div>
+  <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-6 mb-md-0 me-md-auto text-decoration-none">
+        <svg class="bi me-2" width="40" height="40">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+        <span class="fs-4 fw-bold" style="color: white;"><svg width="44px" height="44px" viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg" fill="#fffafa" stroke="#fffafa">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path fill="#fdfcfc"
+                d="M372.67 44.934c-50.275.005-92.476 43.57-38.934 163.87 29.137 16.804 41.594 46.767 33.48 74.848-9.168 31.735-42.353 59.517-96.597 68.084-45.02 7.11-88.46 2.42-122.915-22.218-14.895-10.65-27.867-24.905-38.502-43.088-26.314-8.87-48.678-17.086-61.224-23.25-.197 10.192 1.916 21.786 6.594 33.963l-35.842-4.432L70.87 332.49 43.92 344.385l53.35 11.676c10.984 9.717 23.94 18.99 39.07 27.38l-.002.007c26.098 14.475 195.407 11.62 218.51.578 67.333-32.17 71.596-90.7 28.552-167.472-57.378-102.34-31.747-134.085 3.034-133.07.93 10.53 6.27 21.943 15.593 31.288 5.74 5.757 12.266 9.993 18.886 12.623 19.37 11.416 38.896 19.675 62.072 20.81 5.712.08 9.144-9.696 3.487-10.238-11.602-2.262-21.402-8.37-29.352-15.912 11.712-12.976 7.85-36.605-8.994-53.49-11.038-11.06-24.963-16.53-36.898-15.692-12.41-5.107-25.747-7.938-38.562-7.936zm56.598 37.433c6.16 0 10.95 4.793 10.95 10.953 0 6.157-4.79 10.95-10.95 10.95-6.16 0-10.954-4.793-10.954-10.95 0-6.156 4.795-10.953 10.954-10.953zm-208.653 118.95c-6.108.034-12.128.27-18.18.607-29.242 1.63-59.597 5.87-101.03 1.365 28.59 40.045 73.354 51.978 116.91 49.04-32.74 15.03-75.678 8.755-108.41-10.848.475 1.48.96 2.94 1.454 4.38 17.087 33.357 62.417 42.17 88.845 42.066-16.554 11.997-42.21 12.406-65.994 2.386 7.334 9.737 15.51 17.67 24.366 24.002 29.323 20.968 67.166 25.59 109.127 18.96 49.298-7.785 74.954-31.945 81.56-54.81 6.607-22.867-3.598-45.977-34.556-58.134-36.452-14.313-63.225-18.523-87.95-18.975-2.06-.037-4.106-.05-6.142-.04zM64.14 378.278c-29.424 5.99-46.933 13.47-46.933 21.588 0 19.668 102.56 35.612 229.072 35.612s229.072-15.944 229.072-35.612c0-8.098-17.424-15.562-46.72-21.545 12.117 3.613 18.923 7.643 18.923 11.895 0 15.515-90.098 28.092-201.24 28.092-111.14 0-201.24-12.577-201.24-28.092 0-4.27 6.858-8.314 19.064-11.938z">
+              </path>
+            </g>
+          </svg>NeerVision</span>
+
+      </a>
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="suma.html" class="nav-link" style="color:white;" aria-current="page">Home</a></li>
+        <li class="nav-item"><a href="#index2.html" style="color:white;" class="nav-link">Prediction</a></li>
+        <li class="nav-item"><a href="#" style="color:white;" class="nav-link">Map</a></li>
+      </ul>
+    </header>
+  </div>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-2 align-items-md-center g-2 py-2">
+      <div class="col d-flex flex-column align-items-start gap-2">
+        <h2 class="fw-bold ">Parameters that majorly affect the water quality</h2>
+        <p style="font-size: 16px;">This page provides detailed insights into the key factors that affect water quality,
+          ensuring safe and clean drinking water. The primary focus is on four major parameters:pH Level, Hardness,
+          Turbidity, and Conductivity.</p>
+        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-lg px-4 custom-btn">Explore Live Map</button>
+        </div>
+
+        <style>
+          .custom-btn {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            /* Default text color */
+            transition: all 0.3s ease-in-out;
+          }
+
+          .custom-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            color: black;
+            /* Change text to white on hover */
+          }
+        </style>
+      </div>
+      <div class="col">
+        <div class="row row-cols-1 row-cols-sm-2 g-4">
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small p-2 d-inline-flex align-items-center justify-content-center fs-4 rounded-3 "
+              style="background: rgb(82,82,87);
+background: linear-gradient(90deg, rgba(82,82,87,1) 0%, rgba(179,179,179,1) 35%, rgba(218,218,218,1) 100%);">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#1f1f1f">
+                <path
+                  d="M480-80q-83 0-141.5-58.5T280-280v-360q-33 0-56.5-23.5T200-720v-80q0-33 23.5-56.5T280-880h400q33 0 56.5 23.5T760-800v80q0 33-23.5 56.5T680-640v360q0 83-58.5 141.5T480-80ZM280-720h400v-80H280v80Zm200 560q50 0 85-35t35-85H480v-80h120v-80H480v-80h120v-120H360v360q0 50 35 85t85 35ZM280-720v-80 80Z" />
+              </svg>
+            </div>
+            <h4 class="fw-semibold mb-0 ">pH Level</h4>
+            <p style="color:white; font-size: 14px;">
+              <b>Ideal Range:</b>"6.5 - 8.5"</br>
+              <b>Effect:</b> If pH < 6.5 → Water is acidic →bitter taste, and tooth erosion. </br>If pH > 8.5 → Water is
+                alkaline → Causes skin irritation, hard water formation.
+            </p>
+          </div>
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small p-2 d-inline-flex align-items-center justify-content-center fs-4 rounded-3"
+              style="background: rgb(82,82,87);
+background: linear-gradient(90deg, rgba(82,82,87,1) 0%, rgba(179,179,179,1) 35%, rgba(218,218,218,1) 100%);">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#1f1f1f">
+                <path
+                  d="M480-120 80-600l120-240h560l120 240-400 480Zm-95-520h190l-60-120h-70l-60 120Zm55 347v-267H218l222 267Zm80 0 222-267H520v267Zm144-347h106l-60-120H604l60 120Zm-474 0h106l60-120H250l-60 120Z" />
+              </svg>
+            </div>
+            <h4 class="fw-semibold mb-0">Hardness</h4>
+            <p style="color:white; font-size: 14px;">
+              <b>Ideal Range:</b>"0 - 300 mg/L"</br>
+              <b>Effect:</b> High hardness causes scaling in pipelines, dry skin, and spotted dishes.
+          </div>
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small p-2 d-inline-flex align-items-center justify-content-center  fs-4 rounded-3"
+              style="background: rgb(82,82,87);
+background: linear-gradient(90deg, rgba(82,82,87,1) 0%, rgba(179,179,179,1) 35%, rgba(218,218,218,1) 100%);">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#1f1f1f">
+                <path
+                  d="M80-120v-80q38 0 68-14.5t65-40.5q30 25 65.5 39.5T347-201q33 0 69-14t65-40q32 28 66 41t68 13q33 0 64.5-13t69.5-41q39 30 69 42.5t62 12.5v80q-35 0-67.5-9.5T749-157q-32 20-66.5 28.5T615-120q-33 0-67.5-8.5T481-157q-29 19-64 28t-70 9q-34 0-68-9t-66-28q-31 18-64.5 27.5T80-120Zm0-180v-80q0-97 37.5-181T220-707q65-62 152.5-97.5T560-840q33 0 65.5 3.5T684-827q-21 32-32.5 67.5T640-693q0 55 39 94t94 39h107v80H773q-89 0-151-62t-62-151q0-14 2-29.5t6-30.5q-74 18-121 76.5T400-540q0 36 11.5 68.5T444-410q8-5 17-11.5t19-13.5q29 26 67 40t68 14q30 0 67-14.5t67-39.5q32 24 63.5 39.5T880-380v80q-35 0-67.5-9.5T749-337q-32 20-65 28.5t-69 8.5q-36 0-72-10t-62-27q-31 19-65 27.5t-69 9.5q-35 1-69-9t-65-28q-31 18-64.5 27.5T80-300Zm265-81h10q5 0 10-1-22-35-33.5-75T320-540q0-81 37-146.5T460-794v44q-62 16-114.5 48.5t-92 78.5Q214-577 190-520.5T161-400q15-9 26-16t26-19q37 27 67 40.5t65 13.5Zm-75-168Z" />
+              </svg>
+            </div>
+            <h4 class="fw-semibold mb-0">Turbidity</h4>
+            <p style="color:white; font-size: 14px;">
+              <b>Ideal Range:</b>"0 - 5 NTU"</br>
+              <b>Effect:</b> High turbidity may harbor bacteria, viruses, and contaminants.
+          </div>
+          <div class="col d-flex flex-column gap-2">
+            <div class="feature-icon-small p-2 d-inline-flex align-items-center justify-content-center fs-4 rounded-3"
+              style="background: rgb(82,82,87);
+background: linear-gradient(90deg, rgba(82,82,87,1) 0%, rgba(179,179,179,1) 35%, rgba(218,218,218,1) 100%);">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                fill="#1f1f1f">
+                <path
+                  d="m422-232 207-248H469l29-227-185 267h139l-30 208ZM320-80l40-280H160l360-520h80l-40 320h240L400-80h-80Zm151-390Z" />
+              </svg>
+            </div>
+            <h4 class="fw-semibold mb-0">Conductivity</h4>
+            <p style="color:white; font-size: 14px;">
+              <b>Ideal Range:</b> "50 - 500 µS/cm"</br>
+              <b>Effect:</b> High conductivity indicates excessive dissolved solids.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Prediction</title>
+
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <style>
+        /* Apply Poppins font to all text */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Background video setup */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(1.5);
+        }
+
+        /* Overlay effect */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        /* Navbar (Top-Right) */
+        .navbar-container {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
+
+        .nav-link {
+            color: white !important;
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
+        /* Title (Top-Left) */
+        .title-container {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            color: white;
+        }
+
+        .title-container h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Content Container */
+        .content-container {
+            position: absolute;
+            top: 100px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: white;
+            margin: 7%;
+        }
+
+        .content-container h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .content-container .lead {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .content-container .btn {
+            font-size: 1.1rem;
+        }
+
+        /* Custom Button */
+        .custom-btn {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .custom-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Video -->
+    <div class="video-container">
+        <video autoplay muted loop>
+            <source src="videos.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Title (Top-Left) -->
+    <div class="title-container">
+        <h3 class="display-5 fw-bold"><svg width="44px" height="44px" viewBox="0 0 512 512"
+                xmlns="http://www.w3.org/2000/svg" fill="#fffafa" stroke="#fffafa">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path fill="#fdfcfc"
+                        d="M372.67 44.934c-50.275.005-92.476 43.57-38.934 163.87 29.137 16.804 41.594 46.767 33.48 74.848-9.168 31.735-42.353 59.517-96.597 68.084-45.02 7.11-88.46 2.42-122.915-22.218-14.895-10.65-27.867-24.905-38.502-43.088-26.314-8.87-48.678-17.086-61.224-23.25-.197 10.192 1.916 21.786 6.594 33.963l-35.842-4.432L70.87 332.49 43.92 344.385l53.35 11.676c10.984 9.717 23.94 18.99 39.07 27.38l-.002.007c26.098 14.475 195.407 11.62 218.51.578 67.333-32.17 71.596-90.7 28.552-167.472-57.378-102.34-31.747-134.085 3.034-133.07.93 10.53 6.27 21.943 15.593 31.288 5.74 5.757 12.266 9.993 18.886 12.623 19.37 11.416 38.896 19.675 62.072 20.81 5.712.08 9.144-9.696 3.487-10.238-11.602-2.262-21.402-8.37-29.352-15.912 11.712-12.976 7.85-36.605-8.994-53.49-11.038-11.06-24.963-16.53-36.898-15.692-12.41-5.107-25.747-7.938-38.562-7.936zm56.598 37.433c6.16 0 10.95 4.793 10.95 10.953 0 6.157-4.79 10.95-10.95 10.95-6.16 0-10.954-4.793-10.954-10.95 0-6.156 4.795-10.953 10.954-10.953zm-208.653 118.95c-6.108.034-12.128.27-18.18.607-29.242 1.63-59.597 5.87-101.03 1.365 28.59 40.045 73.354 51.978 116.91 49.04-32.74 15.03-75.678 8.755-108.41-10.848.475 1.48.96 2.94 1.454 4.38 17.087 33.357 62.417 42.17 88.845 42.066-16.554 11.997-42.21 12.406-65.994 2.386 7.334 9.737 15.51 17.67 24.366 24.002 29.323 20.968 67.166 25.59 109.127 18.96 49.298-7.785 74.954-31.945 81.56-54.81 6.607-22.867-3.598-45.977-34.556-58.134-36.452-14.313-63.225-18.523-87.95-18.975-2.06-.037-4.106-.05-6.142-.04zM64.14 378.278c-29.424 5.99-46.933 13.47-46.933 21.588 0 19.668 102.56 35.612 229.072 35.612s229.072-15.944 229.072-35.612c0-8.098-17.424-15.562-46.72-21.545 12.117 3.613 18.923 7.643 18.923 11.895 0 15.515-90.098 28.092-201.24 28.092-111.14 0-201.24-12.577-201.24-28.092 0-4.27 6.858-8.314 19.064-11.938z">
+                    </path>
+                </g>
+            </svg>NeerVision</h3>
+    </div>
+
+    <!-- Navigation Bar (Top-Right) -->
+    <div class="navbar-container">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="input.html" class="nav-link">Prediction</a></li>
+            <li class="nav-item"><a href="#" class="nav-link">Map</a></li>
+        </ul>
+    </div>
+
+    <!-- Content Container -->
+    <div class="content-container">
+        <h1 class="display-4 fw-bold">Water Quality Checker</h1>
+        <br>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">
+                WELCOME! We’re glad you’re here. Our system offers accurate, up-to-date water quality predictions.
+                Optimized for recent data (under 85.8 days old), ensuring 100% accuracy and meeting top industry
+                standards.
+            </p>
+            <br>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-lg px-4 custom-btn">Explore Live Map</button>
+                <button type="button" class="btn btn-primary btn-lg px-4">Check Water Quality</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
