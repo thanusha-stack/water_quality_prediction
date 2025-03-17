@@ -11,18 +11,21 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
     <style>
- 
-.nav-link {
-  color: white !important;
-}
+.navbar-container {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+        }
 
-.nav-link:hover {
-  color: #ccc !important;
-}
+        .nav-link {
+            color: white !important;
+        }
 
-.fs-4.fw-bold {
-  color: white !important;
-}
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+
 .video-container {
             position: fixed;
             top: 0;
@@ -47,7 +50,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.507);
+            background: rgba(0, 0, 0, 0.342);
             z-index: -1;
         }
 
@@ -191,6 +194,10 @@
         }
       }
 
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+
     </style>
   </head>
   <body>
@@ -202,8 +209,7 @@
     </div>
     <!-- Overlay -->
     <div class="overlay"></div>
-    <div class="container">
-      <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <header class="d-flex flex-wrap justify-content-center mb-4">
         <a href="/" class="d-flex align-items-center mb-6 mb-md-0 me-md-auto text-decoration-none">
           <svg class="bi me-2" width="40" height="40">
             <use xlink:href="#bootstrap"></use>
@@ -226,7 +232,6 @@
           <li class="nav-item"><a href="../map/index.html" style="color:white;" class="nav-link">Map</a></li>
         </ul>
       </header>
-    </div>
     
     <form id="predictionForm">
       <!-- Row 1 -->
