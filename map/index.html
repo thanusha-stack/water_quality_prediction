@@ -14,11 +14,19 @@
       #map {
         height: 600px;
       }
-      
+      h2 a {
+    text-decoration: none; /* Removes underline */
+    color: black; /* Changes text color to black */
+}
+
+h2 a:hover {
+    color: rgb(8, 17, 70); /* Ensures text remains black on hover */
+}
+
     </style>
   </head>
-  <body  style="font-family: 'Poppins', sans-serif;">
-    <h2>Water Quality Map <a href="../build/home.html" style="padding-left: 680px;">Home</a> <a href="../templates/index.html" style="padding-left: 20px;">Prediction</a> <a href="../build/info.html" style="padding-left: 20px;">Map</a></h2>
+  <body  style="font-family: 'Poppins', sans-serif; font-size:smaller;">
+    <h2>Water Quality Map <a href="../build/home.html" style="padding-left: 750px;">Home</a> <a href="../templates/index.html" style="padding-left: 20px;">Prediction</a> <a href="../build/info.html" style="padding-left: 20px;">Map</a></h2>
     
     <div id="map"></div>
 
