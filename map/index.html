@@ -32,5 +32,45 @@ h2 a:hover {
 
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="script.js"></script>
+    <script>
+      function showCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    currentLocationCoordinates = [lat, lng];
+                    var userLocation = L.marker(currentLocationCoordinates).addTo(map)
+                        .bindPopup('<b>Your Current Location</b><br />Latitude: ' + lat + '<br />Longitude: ' + lng).openPopup();
+
+                    // Zoom to user's location with higher accuracy
+                    map.setView(currentLocationCoordinates, 15);
+
+                }, function (error) {
+                    alert("Unable to retrieve your location. Please check your browser settings.");
+                }, {
+                    enableHighAccuracy: true, // Request high-accuracy location
+                    timeout: 10000, // Set a timeout to avoid long waits
+                    maximumAge: 0 // Do not use cached location data
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', showCurrentLocation);
+
+        // Handling map click events
+        function onMapClick(e) {
+            // Add a popup at the clicked location with the coordinates
+            L.popup()
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+
+        // Bind the map click event to the onMapClick function
+        map.on('click', onMapClick);
+
+    </script>
   </body>
 </html>
