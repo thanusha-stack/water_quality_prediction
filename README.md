@@ -52,7 +52,7 @@ npm run dev
 
 ## 🙌 Contributors
 
-- Thanusha A  
-- Sowundarya R  https://github.com/sowund
-- Vinitha P  https://github.com/Vinitha2024
+- Thanusha A  **github:** https://github.com/thanusha-stack || **Linkedin:** https://www.linkedin.com/in/thanusha-a-5a7169300/
+- Sowundarya R  **github:** https://github.com/sowund       || **Linkedin:** https://www.linkedin.com/in/sowundarya-r-0a92452a1/
+- Vinitha P **github:** https://github.com/Vinitha2024      || **Linkedin:** www.linkedin.com/in/vinitha-p-
 
