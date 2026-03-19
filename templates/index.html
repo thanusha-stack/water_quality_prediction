@@ -338,23 +338,34 @@
       form.addEventListener("submit", function (event) {
         event.preventDefault(); // Prevent form from submitting
 
-        // Simulate a prediction result (replace with actual prediction logic)
-        const predictionOutput = Math.random() > 0.5 ? 1 : 0; // Randomly generate 0 or 1
-        let resultText = "";
-        if (predictionOutput === 0) {
-          resultText = "❌ Water Is Not Safe To Drink";
-          moreInfoLink.style.display = "block"; // Show "Click here to see more" link
-          moreInfoLink.href =
-            "../build/info.html"; // Replace with actual link
-        } else {
-          resultText = "✅ Water Is Safe To Drink";
-          moreInfoLink.style.display = "none"; // Hide the link
-        }
-        modalResult.textContent = resultText;
+        const formData = new FormData(form);
 
-        // Show the modal and blur overlay
-        modal.style.display = "block";
-        blurOverlay.style.display = "block";
+        fetch("/predict", {
+          method: "POST",
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            let resultText = data.message;
+            if (data.result === 0) {
+              moreInfoLink.style.display = "block"; // Show "Click here to see more" link
+              moreInfoLink.href = "../build/info.html"; // Replace with actual link
+            } else {
+              moreInfoLink.style.display = "none"; // Hide the link
+            }
+            modalResult.textContent = resultText;
+
+            // Show the modal and blur overlay
+            modal.style.display = "block";
+            blurOverlay.style.display = "block";
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            modalResult.textContent = "Error making prediction. Is the server running?";
+            moreInfoLink.style.display = "none";
+            modal.style.display = "block";
+            blurOverlay.style.display = "block";
+        });
       });
 
       // Close the modal
