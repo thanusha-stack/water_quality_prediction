@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water Quality Map</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+      #map {
+        height: 600px;
+      }
+      h2 a {
+    text-decoration: none; /* Removes underline */
+    color: black; /* Changes text color to black */
+}
+
+h2 a:hover {
+    color: rgb(8, 17, 70); /* Ensures text remains black on hover */
+}
+
+    </style>
+  </head>
+  <body  style="font-family: 'Poppins', sans-serif; font-size:smaller;">
+    <h2>Water Quality Map <a href="../build/home.html" style="padding-left: 750px;">Home</a> <a href="../templates/index.html" style="padding-left: 20px;">Prediction</a> <a href="../build/info.html" style="padding-left: 20px;">Map</a></h2>
+    
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+    <script>
+      function showCurrentLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    currentLocationCoordinates = [lat, lng];
+                    var userLocation = L.marker(currentLocationCoordinates).addTo(map)
+                        .bindPopup('<b>Your Current Location</b><br />Latitude: ' + lat + '<br />Longitude: ' + lng).openPopup();
+
+                    // Zoom to user's location with higher accuracy
+                    map.setView(currentLocationCoordinates, 15);
+
+                }, function (error) {
+                    alert("Unable to retrieve your location. Please check your browser settings.");
+                }, {
+                    enableHighAccuracy: true, // Request high-accuracy location
+                    timeout: 10000, // Set a timeout to avoid long waits
+                    maximumAge: 0 // Do not use cached location data
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', showCurrentLocation);
+
+        // Handling map click events
+        function onMapClick(e) {
+            // Add a popup at the clicked location with the coordinates
+            L.popup()
+                .setLatLng(e.latlng)
+                .setContent("You clicked the map at " + e.latlng.toString())
+                .openOn(map);
+        }
+
+        // Bind the map click event to the onMapClick function
+        map.on('click', onMapClick);
+
+    </script>
+  </body>
+</html>
